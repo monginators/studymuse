@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload PDF</title>
+    <title>Upload Text</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700&display=swap">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <script>
       function redirectToDashboard(event) {
-        // Prevent the default form submit action if you're not actually uploading the file
+        // Prevent the default form submit action
         event.preventDefault();
 
-        // This line redirects to the /dashboard page
+        // Normally here you would submit the text to your server
+        // For this example, we'll just redirect to the dashboard
         window.location.href = '/dashboard';
       }
     </script>
@@ -20,12 +21,13 @@
 
 <section class="upload-section">
     <div class="container">
-        <h1 class="title">Upload Your PDF</h1>
-        <p class="subtitle">Please select the PDF document you want to upload.</p>
+        <h1 class="title">Submit Your Text</h1>
+        <p class="subtitle">Please enter the text you want to submit.</p>
 
-        <form class="upload-form" id="pdfUploadForm" method="POST" action="/upload" enctype="multipart/form-data" onsubmit="redirectToDashboard(event)">
-            <input type="file" id="pdfFile" name="pdfFile" accept=".pdf" required>
-            <button type="submit" class="submit-btn">Upload PDF</button>
+        <form class="upload-form" id="textUploadForm" method="POST" action="/submit-text" onsubmit="redirectToDashboard(event)">
+            <!-- Use a textarea for multi-line text input -->
+            <textarea id="textInput" name="textInput" rows="4" required placeholder="Type your text here..."></textarea>
+            <button type="submit" class="submit-btn">Submit Text</button>
         </form>
     </div>
 </section>
