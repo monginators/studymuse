@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from models import User, Issue
 from extensions import db  # Import db from extensions
 from datetime import datetime
-from sqlalchemy import func
+# from sqlalchemy import func
 
 
 app = Flask(__name__)
