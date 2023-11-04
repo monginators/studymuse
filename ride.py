@@ -21,20 +21,10 @@ def test_conn():
     except Exception as e:
         print(e)
 
-<<<<<<< HEAD
-# @app.route("/submit-text", method=['POST'])
-def upload_file(json_file):
-    with open(json_file, 'r') as f:
-        curr_note = json.load(f)
-=======
 @app.route('/submit-text', methods=['POST'])
 def upload_file():
     data = request.form
-    name = data.get('noteName')
-    content = data.get('noteContent')
->>>>>>> 3c3a99a (refine upload, connect with backend)
-
 
     # Create a new client and connect to the server
     collection = db[os.getenv("MONGODB_COLLECTION")]
-    collection.insert_many(data)
+    collection.insert_one(data)
