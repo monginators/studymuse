@@ -41,14 +41,12 @@ def userError():
 def yaya():
     data = request.form.to_dict()
     name = data.get('noteName')
-    email = data.get('noteContent')
-    
-    print(name)
-    print(email)
+    text = data.get('noteContent')
 
     # Create a new client and connect to the server
     collection = mongodb[os.getenv("MONGODB_COLLECTION")]
-    collection.insert_one(data)
+    collection.insert_one({"name": name, "text": text})
+    return render_template('upload.html')
 
 
 """ USER MANAGEMENTS ENDPOINTS """

@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 load_dotenv()
 import os
 import json
-from run import app
 
 #uri = "mongodb+srv://rayant:gcVuoLoTz830GZmx@cluster0.4eebirt.mongodb.net/?retryWrites=true&w=majority"
 
