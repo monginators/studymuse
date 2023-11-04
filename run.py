@@ -37,10 +37,14 @@ def userError():
     flash("Username doesn't exist, register user!!") 
     return render_template('error/passError.html')
 
-@app.route('/submit-text', methods=['POST'])
-def upload_file():
-    print(request.form)
-    data = request.form
+@app.route('/yaya', methods=['POST'])
+def yaya():
+    data = request.form.to_dict()
+    name = data.get('noteName')
+    email = data.get('noteContent')
+    
+    print(name)
+    print(email)
 
     # Create a new client and connect to the server
     collection = mongodb[os.getenv("MONGODB_COLLECTION")]
