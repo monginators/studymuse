@@ -103,3 +103,22 @@ body, html {
     background-color: #003262 !important; /* Blue */
     color: #FDB515 !important; /* Gold */
 }
+
+.upload-form input[type="text"],
+.upload-form textarea {
+    width: 100%; /* Make input and textarea full width of their container */
+    padding: 10px; /* Add some padding inside the input and textarea */
+    margin-bottom: 20px; /* Add some space below each input and textarea */
+    border: 1px solid #ccc; /* Add a border to the input and textarea */
+    border-radius: 4px; /* Add rounded corners to the input and textarea */
+    font-family: 'Poppins', sans-serif; /* Set the font for input and textarea */
+    font-size: 1em; /* Set font size for input and textarea */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.upload-form button.submit-btn {
+    width: auto; /* Allow the submit button to size itself */
+    padding: 10px 20px; /* Add some padding inside the button */
+    margin-top: 0px; /* You can adjust this if you want space above the button */
+    /* Other styles for the button */
+}

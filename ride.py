@@ -1,4 +1,5 @@
 from pymongo.mongo_client import MongoClient
+from flask import Flask, request, jsonify, session, flash, render_template, redirect, url_for
 from pymongo.server_api import ServerApi
 from dotenv import load_dotenv
 load_dotenv()
@@ -6,11 +7,11 @@ import os
 import json
 # from run import app
 
+#uri = "mongodb+srv://rayant:gcVuoLoTz830GZmx@cluster0.4eebirt.mongodb.net/?retryWrites=true&w=majority"
 
 # Create a new client and connect to the server
-client = MongoClient(os.getenv('MONGODB_URI2'), server_api=ServerApi('1'))
+client = MongoClient(os.getenv('MONGODB_URI'), server_api=ServerApi('1'))
 db = client[os.getenv("MONGODB_DATABASE")]
-collection = db[os.getenv("MONGODB_COLLECTION")]
 
 def test_conn():
 # Send a ping to confirm a successful connection
@@ -20,12 +21,20 @@ def test_conn():
     except Exception as e:
         print(e)
 
+<<<<<<< HEAD
 # @app.route("/submit-text", method=['POST'])
 def upload_file(json_file):
     with open(json_file, 'r') as f:
         curr_note = json.load(f)
+=======
+@app.route('/submit-text', methods=['POST'])
+def upload_file():
+    data = request.form
+    name = data.get('noteName')
+    content = data.get('noteContent')
+>>>>>>> 3c3a99a (refine upload, connect with backend)
 
-    collection.insert_one(curr_note)
 
-if __name__ == "__main__":
-    test_conn()
+    # Create a new client and connect to the server
+    collection = db[os.getenv("MONGODB_COLLECTION")]
+    collection.insert_many(data)
