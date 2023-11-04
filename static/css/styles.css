@@ -1,0 +1,105 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #e6f2ff; /* Lighter Blue */
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.logo {
+    width: 300px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #003262; /* Blue */
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    color: #004882; /* Slightly Lighter Blue */
+    margin-bottom: 30px;
+}
+
+.signup-form, .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.signup-form input, .login-form input {
+    padding: 15px;
+    border: 2px solid #003262; /* Blue */
+    border-radius: 8px;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.signup-form input:focus, .login-form input:focus {
+    border-color: #004882; /* Slightly Lighter Blue */
+}
+
+.submit-btn {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    background-color: #FDB515; /* Gold */
+    color: #003262; /* Blue */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #fdd835; /* Lighter Gold */
+}
+
+.register-link {
+    font-size: 1em;
+    color: #004882; /* Slightly Lighter Blue */
+}
+
+.register-link a {
+    color: #003262; /* Blue */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.register-link a:hover {
+    color: #FDB515; /* Gold */
+}
+
+/* Override Bootstrap navbar color */
+.navbar {
+    background-color: #003262 !important; /* Blue */
+}
+
+/* Override Bootstrap navbar links */
+.navbar .navbar-nav .nav-link {
+    color: #FDB515 !important; /* Gold */
+}
+
+/* Change the active link color */
+.navbar .navbar-nav .nav-item.active .nav-link,
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link:focus {
+    color: #FFD700 !important; /* Lighter Gold for hover/focus */
+}
+
+/* Override Bootstrap footer color */
+.footer {
+    background-color: #003262 !important; /* Blue */
+    color: #FDB515 !important; /* Gold */
+}
