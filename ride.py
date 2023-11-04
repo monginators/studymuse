@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()
 import os
 import json
-from run import app
+# from run import app
 
 
 # Create a new client and connect to the server
@@ -20,7 +20,7 @@ def test_conn():
     except Exception as e:
         print(e)
 
-@app.route("/submit-text", method=['POST'])
+# @app.route("/submit-text", method=['POST'])
 def upload_file(json_file):
     with open(json_file, 'r') as f:
         curr_note = json.load(f)
