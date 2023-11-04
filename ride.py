@@ -4,12 +4,13 @@ from dotenv import load_dotenv
 load_dotenv()
 import os
 import json
+from run import app
 
-#uri = "mongodb+srv://rayant:gcVuoLoTz830GZmx@cluster0.4eebirt.mongodb.net/?retryWrites=true&w=majority"
 
 # Create a new client and connect to the server
-client = MongoClient(os.getenv('MONGODB_URI'), server_api=ServerApi('1'))
+client = MongoClient(os.getenv('MONGODB_URI2'), server_api=ServerApi('1'))
 db = client[os.getenv("MONGODB_DATABASE")]
+collection = db[os.getenv("MONGODB_COLLECTION")]
 
 def test_conn():
 # Send a ping to confirm a successful connection
@@ -19,10 +20,12 @@ def test_conn():
     except Exception as e:
         print(e)
 
+@app.route("/submit-text", method=['POST'])
 def upload_file(json_file):
     with open(json_file, 'r') as f:
-        data = json.load(f)
+        curr_note = json.load(f)
 
-    # Create a new client and connect to the server
-    collection = db[os.getenv("MONGODB_COLLECTION")]
-    collection.insert_many(data)
+    collection.insert_one(curr_note)
+
+if __name__ == "__main__":
+    test_conn()
