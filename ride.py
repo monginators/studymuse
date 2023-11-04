@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 import os
 import json
-# from run import app
+from run import app
 
 #uri = "mongodb+srv://rayant:gcVuoLoTz830GZmx@cluster0.4eebirt.mongodb.net/?retryWrites=true&w=majority"
 
@@ -21,10 +21,11 @@ def test_conn():
     except Exception as e:
         print(e)
 
-@app.route('/submit-text', methods=['POST'])
-def upload_file():
-    data = request.form
+# @app.route('/submit-text', methods=['POST'])
+# def upload_file():
+#     data = request.form
+#     print(data)
 
-    # Create a new client and connect to the server
-    collection = db[os.getenv("MONGODB_COLLECTION")]
-    collection.insert_one(data)
+#     # Create a new client and connect to the server
+#     collection = db[os.getenv("MONGODB_COLLECTION")]
+#     collection.insert_one(data)

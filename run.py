@@ -2,7 +2,10 @@ from flask import Flask, request, jsonify, session, flash, render_template, redi
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import User, Issue
 from extensions import db  # Import db from extensions
+from extensions import mongodb 
 from datetime import datetime
+import os
+
 # from sqlalchemy import func
 
 
@@ -33,6 +36,15 @@ def passError():
 def userError():
     flash("Username doesn't exist, register user!!") 
     return render_template('error/passError.html')
+
+@app.route('/submit-text', methods=['POST'])
+def upload_file():
+    print(request.form)
+    data = request.form
+
+    # Create a new client and connect to the server
+    collection = mongodb[os.getenv("MONGODB_COLLECTION")]
+    collection.insert_one(data)
 
 
 """ USER MANAGEMENTS ENDPOINTS """
