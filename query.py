@@ -3,6 +3,7 @@
 ## and you must pass in the name of that index when connecting to Mongodb below 
 from dotenv import load_dotenv
 load_dotenv()
+from anthropic import Anthropic, HUMAN_PROMPT, AI_PROMPT
 
 # Turns on really noisy logging
 import logging
@@ -18,6 +19,7 @@ from llama_index.indices.vector_store.base import VectorStoreIndex
 
 # Create a new client and connect to the server
 client = MongoClient(os.getenv("MONGODB_URI"), server_api=ServerApi('1'))
+anthropic = Anthropic(api_key=os.getenv('CLAUDE_API_KEY'),)
 
 def queriana(query):
     # connect to Atlas as a vector store
@@ -30,7 +32,15 @@ def queriana(query):
     index = VectorStoreIndex.from_vector_store(store)
 
     # query your data!
-    # here we have customized the number of documents returned per query to 20, because tweets are really short
-    query_engine = index.as_query_engine(similarity_top_k=20)
+    query_engine = index.as_query_engine(similarity_top_k=5)
     response = query_engine.query(query)
+    print("yooooo", type(response.response))
+    if response.response == "Empty Response" or response.response.__contains__("not enough information"):
+        response = anthropic.completions.create(
+            model="claude-2",
+            max_tokens_to_sample=300,
+            prompt=f'({HUMAN_PROMPT} {query} {AI_PROMPT}',
+        )
+        response = f'This information has been AI generated and is not from your notes: {response.completion}'
+
     return response
