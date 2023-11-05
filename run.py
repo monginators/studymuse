@@ -5,6 +5,7 @@ from extensions import db  # Import db from extensions
 from extensions import mongodb 
 from datetime import datetime
 import os
+from import_index import embed
 
 # from sqlalchemy import func
 
@@ -50,6 +51,7 @@ def yaya():
     # Create a new client and connect to the server
     collection = mongodb[os.getenv("MONGODB_COLLECTION")]
     collection.insert_one({"name": name, "text": text})
+    embed()
     return render_template('upload.html')
 
 
