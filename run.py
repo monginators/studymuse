@@ -27,6 +27,10 @@ def signup_page():
 def upload_page():
     return render_template('upload.html')
 
+@app.route('/query')
+def query():
+    return render_template('query.html')
+
 @app.route('/passError')
 def passError():
     flash("Passwords don't match!") 
@@ -87,7 +91,7 @@ def register():
     db.session.add(new_user)
     db.session.commit()
 
-    return redirect(url_for('onboarding'))
+    return redirect(url_for('dashboard'))
 
 
 """ USER LOGIN ENPOINT """
@@ -262,14 +266,6 @@ def report_form():
         pass
     return render_template('issue_reporting.html')
 
-
-@app.route('/onboarding')
-def onboarding():
-    return render_template('onboarding.html')
-
-@app.route('/map')
-def map_view():
-    return render_template('map.html')
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
