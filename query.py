@@ -19,7 +19,7 @@ from llama_index.indices.vector_store.base import VectorStoreIndex
 # Create a new client and connect to the server
 client = MongoClient(os.getenv("MONGODB_URI"), server_api=ServerApi('1'))
 
-def query(query):
+def queriana(query):
     # connect to Atlas as a vector store
     store = MongoDBAtlasVectorSearch(
         client,

@@ -6,6 +6,7 @@ from extensions import mongodb
 from datetime import datetime
 import os
 from import_index import embed
+from query import queriana
 
 # from sqlalchemy import func
 
@@ -42,6 +43,21 @@ def userError():
     flash("Username doesn't exist, register user!!") 
     return render_template('error/passError.html')
 
+@app.route('/queryIt', methods=['GET', 'POST'])
+def queryIt():
+    gpt_return = ""
+    if request.method == 'POST':
+        data = request.form.to_dict()
+        dat = data.get('queryContent')
+
+        gpt_return = queriana(dat)
+
+    return render_template('query.html', submitted_text=gpt_return)
+
+
+
+
+
 @app.route('/yaya', methods=['POST'])
 def yaya():
     data = request.form.to_dict()
@@ -52,7 +68,7 @@ def yaya():
     collection = mongodb[os.getenv("MONGODB_COLLECTION")]
     collection.insert_one({"name": name, "text": text})
     embed()
-    return render_template('upload.html')
+    return render_template('query.html')
 
 
 """ USER MANAGEMENTS ENDPOINTS """
